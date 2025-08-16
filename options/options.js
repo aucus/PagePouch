@@ -143,27 +143,54 @@ class OptionsManager {
         // AI Summary toggle - main feature toggle
         const enableAI = document.getElementById('enable-ai-summary');
         if (enableAI) {
-            enableAI.addEventListener('change', (e) => {
+            enableAI.addEventListener('change', async (e) => {
+                console.log('AI toggle changed:', e.target.checked);
                 this.toggleAISettings(e.target.checked);
                 this.settings.enableAISummary = e.target.checked;
+                
+                // Save settings immediately when AI is toggled
+                try {
+                    await this.saveSettings();
+                    console.log('Settings saved after AI toggle');
+                } catch (error) {
+                    console.error('Failed to save settings after AI toggle:', error);
+                }
             });
         }
 
         // AI Provider selection
         const aiProvider = document.getElementById('ai-provider');
         if (aiProvider) {
-            aiProvider.addEventListener('change', (e) => {
+            aiProvider.addEventListener('change', async (e) => {
+                console.log('AI provider changed:', e.target.value);
                 this.settings.apiProvider = e.target.value;
                 this.updateProviderInfo(e.target.value);
                 this.updateAPIKeyHelp(e.target.value);
+                
+                // Save settings when provider is changed
+                try {
+                    await this.saveSettings();
+                    console.log('Settings saved after provider change');
+                } catch (error) {
+                    console.error('Failed to save settings after provider change:', error);
+                }
             });
         }
 
         // API Key input with optional validation
         const apiKey = document.getElementById('api-key');
         if (apiKey) {
-            apiKey.addEventListener('input', (e) => {
+            apiKey.addEventListener('input', async (e) => {
+                console.log('API key input changed');
                 this.handleAPIKeyInput(e.target.value);
+                
+                // Save settings when API key is changed
+                try {
+                    await this.saveSettings();
+                    console.log('Settings saved after API key change');
+                } catch (error) {
+                    console.error('Failed to save settings after API key change:', error);
+                }
             });
         }
 
@@ -469,14 +496,15 @@ class OptionsManager {
 
     // AI Settings Methods
     toggleAISettings(enabled) {
+        console.log('Toggling AI settings:', enabled);
         const aiSettingsPanel = document.getElementById('ai-settings-panel');
         if (aiSettingsPanel) {
             if (enabled) {
-                aiSettingsPanel.style.display = 'block';
-                aiSettingsPanel.style.opacity = '1';
+                aiSettingsPanel.classList.remove('hidden');
+                aiSettingsPanel.classList.add('visible');
             } else {
-                aiSettingsPanel.style.display = 'none';
-                aiSettingsPanel.style.opacity = '0.5';
+                aiSettingsPanel.classList.remove('visible');
+                aiSettingsPanel.classList.add('hidden');
             }
         }
         
@@ -487,6 +515,7 @@ class OptionsManager {
     }
 
     handleAPIKeyInput(apiKey) {
+        console.log('Handling API key input, length:', apiKey ? apiKey.length : 0);
         this.settings.apiKey = apiKey;
         
         // Optional validation - only validate if key is provided
@@ -683,6 +712,7 @@ class OptionsManager {
         this.updateRangeValue('thumbnail-quality-value', Math.round((this.settings.thumbnailQuality || 0.8) * 100) + '%');
 
         // Toggle AI settings visibility
+        console.log('Initial AI settings state:', this.settings.enableAISummary);
         this.toggleAISettings(this.settings.enableAISummary);
 
         // Update provider info
@@ -931,6 +961,7 @@ class OptionsManager {
 
     // Settings Management
     async saveSettings() {
+        console.log('Saving settings:', this.settings);
         const saveButton = document.getElementById('save-settings');
         const statusElement = document.getElementById('save-status-text');
         
@@ -947,6 +978,7 @@ class OptionsManager {
 
         try {
             const result = await this.settingsManager.saveSettings(this.settings);
+            console.log('Save settings result:', result);
             
             if (result.success) {
                 if (statusElement) {

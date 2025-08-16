@@ -242,11 +242,14 @@ class SettingsManager {
      */
     async saveSettings(settingsData) {
         try {
+            console.log('SettingsManager: Saving settings:', settingsData);
+            
             // Validate settings
             const settings = ExtensionSettings.fromJSON(settingsData);
             const validation = settings.validate();
             
             if (!validation.isValid) {
+                console.error('Settings validation failed:', validation.errors);
                 throw new Error(`Invalid settings: ${validation.errors.join(', ')}`);
             }
             
@@ -261,8 +264,11 @@ class SettingsManager {
                 updatedAt: Date.now()
             };
             
+            console.log('SettingsManager: Final settings to save:', finalSettings);
+            
             // Save to storage
             await chrome.storage.local.set({ [this.SETTINGS_KEY]: finalSettings });
+            console.log('SettingsManager: Settings saved to storage');
             
             // Update cache
             this.updateCache(finalSettings);

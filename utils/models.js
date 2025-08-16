@@ -445,6 +445,18 @@ class ExtensionSettings {
         if (data.enableAISummary && (!data.apiKey || data.apiKey.trim().length === 0)) {
             warnings.push('AI summary is enabled but no API key is provided');
         }
+        
+        // Log validation results for debugging
+        console.log('ExtensionSettings validation:', {
+            isValid: errors.length === 0,
+            errors,
+            warnings,
+            data: {
+                enableAISummary: data.enableAISummary,
+                apiProvider: data.apiProvider,
+                apiKeyLength: data.apiKey ? data.apiKey.length : 0
+            }
+        });
 
         return {
             isValid: errors.length === 0,
