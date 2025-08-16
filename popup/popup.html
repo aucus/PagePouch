@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="popup_title">LaterLens</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Enhanced Header with Status Indicators -->
+        <header class="header popup-header">
+            <div class="header-main">
+                <h1 class="title">
+                    <span class="logo-icon">🔍</span>
+                    <span data-i18n="extensionName">LaterLens</span>
+                </h1>
+                <div class="header-status">
+                    <div id="sync-status" class="status-indicator" data-i18n-title="sync_status_title">
+                        <span class="status-dot"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="save-current-page" class="btn btn-primary" data-i18n-title="popup_save_current">
+                    <span class="icon">📌</span>
+                    <span class="btn-text" data-i18n="popup_save_current">Save</span>
+                </button>
+                <button id="open-options" class="btn btn-secondary" data-i18n-title="options_title">
+                    <span class="icon">⚙️</span>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Enhanced Search with Filters -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" data-i18n-placeholder="popup_search_placeholder" placeholder="Search saved pages..." class="search-input">
+                    <button id="clear-search" class="clear-search-btn hidden" data-i18n-title="clear_search">
+                        <span class="icon">✕</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="filter-container">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all" data-i18n="filter_all">All</button>
+                    <button class="filter-tab" data-filter="recent" data-i18n="filter_recent">Recent</button>
+                    <button class="filter-tab" data-filter="favorites">★</button>
+                </div>
+                <div class="sort-container">
+                    <select id="sort-select" class="sort-select">
+                        <option value="date-desc" data-i18n="sort_newest_first">Newest first</option>
+                        <option value="date-asc" data-i18n="sort_oldest_first">Oldest first</option>
+                        <option value="title-asc" data-i18n="sort_title_az">Title A-Z</option>
+                        <option value="title-desc" data-i18n="sort_title_za">Title Z-A</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced Content Area -->
+        <div class="content">
+            <!-- Loading State -->
+            <div id="loading" class="loading hidden">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <span class="loading-text" data-i18n="popup_loading">Loading pages...</span>
+                </div>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <div class="empty-content">
+                    <div class="empty-icon">📚</div>
+                    <h3 class="empty-title" data-i18n="popup_empty_title">No saved pages yet</h3>
+                    <p class="empty-description" data-i18n="popup_empty_description">
+                        Start building your reading list by saving interesting pages
+                    </p>
+                    <button class="btn btn-primary empty-cta" id="save-current-page-empty">
+                        <span class="icon">📌</span>
+                        Save Current Page
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Empty State -->
+            <div id="search-empty-state" class="empty-state hidden">
+                <div class="empty-content">
+                    <div class="empty-icon">🔍</div>
+                    <h3 class="empty-title">No results found</h3>
+                    <p class="empty-description">
+                        Try adjusting your search terms or filters
+                    </p>
+                    <button class="btn btn-secondary" id="clear-search-empty">
+                        Clear Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Pages Grid -->
+            <div id="pages-grid" class="pages-grid">
+                <!-- Pages will be dynamically inserted here -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div id="load-more-container" class="load-more-container hidden">
+                <button id="load-more" class="btn btn-secondary load-more-btn">
+                    <span class="icon">↓</span>
+                    Load More
+                </button>
+            </div>
+        </div>
+        
+        <!-- Enhanced Footer -->
+        <footer class="footer">
+            <div class="footer-info">
+                <span id="page-count" class="page-count">0 pages</span>
+                <span id="storage-info" class="storage-info"></span>
+            </div>
+            <div class="footer-actions">
+                <button id="export-pages" class="btn btn-outline btn-small" title="Export pages">
+                    <span class="icon">📤</span>
+                </button>
+                <button id="delete-all" class="btn btn-danger btn-small" title="Delete all pages">
+                    <span class="icon">🗑️</span>
+                </button>
+            </div>
+        </footer>
+        
+        <!-- Notification Toast -->
+        <div id="notification-toast" class="notification-toast hidden">
+            <div class="toast-content">
+                <span class="toast-icon"></span>
+                <span class="toast-message"></span>
+            </div>
+            <button class="toast-close" title="Close">✕</button>
+        </div>
+        
+        <!-- Context Menu -->
+        <div id="context-menu" class="context-menu hidden">
+            <div class="context-menu-item" data-action="open">
+                <span class="icon">🔗</span>
+                Open Page
+            </div>
+            <div class="context-menu-item" data-action="open-new-tab">
+                <span class="icon">📄</span>
+                Open in New Tab
+            </div>
+            <div class="context-menu-separator"></div>
+            <div class="context-menu-item" data-action="favorite">
+                <span class="icon">⭐</span>
+                Add to Favorites
+            </div>
+            <div class="context-menu-item" data-action="copy-url">
+                <span class="icon">📋</span>
+                Copy URL
+            </div>
+            <div class="context-menu-separator"></div>
+            <div class="context-menu-item danger" data-action="delete">
+                <span class="icon">🗑️</span>
+                Delete
+            </div>
+        </div>
+        
+        <!-- Confirmation Modal -->
+        <div id="confirmation-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirm Action</h3>
+                    <button class="modal-close" title="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-message">Are you sure you want to proceed?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button class="btn btn-danger modal-confirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../utils/models.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/settings.js"></script>
+    <script src="../utils/screenshot.js"></script>
+    <script src="../utils/integration-helpers.js"></script>
+    <script src="../utils/i18n.js"></script>
+    <script src="../utils/date-formatter.js"></script>
+    <script src="../utils/localize.js"></script>
+    <script src="../utils/error-handler.js"></script>
+    <script src="../utils/toast.js"></script>
+    <script src="../utils/modal.js"></script>
+    <script src="../utils/loading.js"></script>
+    <script src="../utils/loading-helpers.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

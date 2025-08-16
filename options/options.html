@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaterLens Settings</title>
+    <link rel="stylesheet" href="options.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-main">
+                    <div class="logo">
+                        <span class="logo-icon">🔍</span>
+                        <h1 class="title">LaterLens Settings</h1>
+                    </div>
+                    <div class="header-actions">
+                        <button id="import-settings" class="btn btn-outline btn-small" title="Import settings">
+                            <span class="icon">📥</span>
+                            Import
+                        </button>
+                        <button id="export-settings" class="btn btn-outline btn-small" title="Export settings">
+                            <span class="icon">📤</span>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <p class="subtitle">Configure your reading list preferences and AI-powered features</p>
+            </div>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="general">
+                <span class="tab-icon">⚙️</span>
+                General
+            </button>
+            <button class="nav-tab" data-tab="ai">
+                <span class="tab-icon">🤖</span>
+                AI & Summaries
+            </button>
+            <button class="nav-tab" data-tab="storage">
+                <span class="tab-icon">💾</span>
+                Storage
+            </button>
+            <button class="nav-tab" data-tab="privacy">
+                <span class="tab-icon">🔒</span>
+                Privacy
+            </button>
+            <button class="nav-tab" data-tab="advanced">
+                <span class="tab-icon">🔧</span>
+                Advanced
+            </button>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main">
+            <!-- General Settings Tab -->
+            <section id="general-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2 class="section-title">General Settings</h2>
+                    <p class="section-description">Basic configuration for your LaterLens experience</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Default Actions</h3>
+                            <span class="setting-badge">Basic</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="auto-save" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Auto-save pages when visiting</span>
+                            </label>
+                            <p class="setting-description">Automatically save interesting pages based on reading time</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="show-notifications" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Show save notifications</span>
+                            </label>
+                            <p class="setting-description">Display notifications when pages are saved</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="default-view">Default popup view</label>
+                            <select id="default-view" class="setting-select">
+                                <option value="grid">Grid View</option>
+                                <option value="list">List View</option>
+                                <option value="compact">Compact View</option>
+                            </select>
+                            <p class="setting-description">How saved pages are displayed in the popup</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Keyboard Shortcuts</h3>
+                            <span class="setting-badge">Productivity</span>
+                        </div>
+                        
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <span class="shortcut-action">Save current page</span>
+                                <div class="shortcut-keys">
+                                    <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-action">Open popup</span>
+                                <div class="shortcut-keys">
+                                    <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-action">Quick search</span>
+                                <div class="shortcut-keys">
+                                    <kbd>Ctrl</kbd> + <kbd>/</kbd>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="enable-shortcuts" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Enable keyboard shortcuts</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>     
+       
+            <!-- AI Settings Tab -->
+            <section id="ai-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title">AI & Summary Settings</h2>
+                    <p class="section-description">Configure AI-powered features and automatic summarization</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">AI Summary</h3>
+                            <div class="setting-toggle">
+                                <input type="checkbox" id="enable-ai-summary" class="toggle-checkbox">
+                                <label for="enable-ai-summary" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-settings" id="ai-settings-panel">
+                            <div class="setting-group">
+                                <label class="setting-label" for="ai-provider">AI Provider</label>
+                                <div class="provider-selection">
+                                    <select id="ai-provider" class="setting-select">
+                                        <option value="openai">OpenAI (GPT-3.5/GPT-4)</option>
+                                        <option value="anthropic">Anthropic (Claude)</option>
+                                        <option value="gemini">Google (Gemini Pro)</option>
+                                        <option value="ollama">Ollama (Local)</option>
+                                    </select>
+                                    <div class="provider-info" id="provider-info">
+                                        <span class="provider-status" id="provider-status">Not configured</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group" id="api-key-group">
+                                <label class="setting-label" for="api-key">API Key</label>
+                                <div class="api-key-input">
+                                    <input type="password" id="api-key" class="setting-input" placeholder="Enter your API key">
+                                    <button id="toggle-api-key" class="btn btn-icon" title="Show/Hide API key">
+                                        <span class="icon">👁️</span>
+                                    </button>
+                                    <button id="test-api" class="btn btn-secondary">Test</button>
+                                </div>
+                                <div class="api-key-help">
+                                    <p class="setting-description">Your API key is stored locally and never shared</p>
+                                    <a href="#" id="get-api-key-link" class="help-link" target="_blank">How to get an API key</a>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label" for="summary-length">Summary Length</label>
+                                <div class="range-input">
+                                    <input type="range" id="summary-length" class="setting-range" min="50" max="500" step="25" value="200">
+                                    <div class="range-labels">
+                                        <span>Brief</span>
+                                        <span class="range-value" id="summary-length-value">200 chars</span>
+                                        <span>Detailed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label" for="summary-style">Summary Style</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="summary-style" value="concise" class="radio-input">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">Concise</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="summary-style" value="detailed" class="radio-input">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">Detailed</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="summary-style" value="bullet" class="radio-input">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">Bullet Points</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label" for="summary-language">Preferred Language</label>
+                                <select id="summary-language" class="setting-select">
+                                    <option value="auto">Auto-detect</option>
+                                    <option value="en">English</option>
+                                    <option value="ko">한국어</option>
+                                    <option value="ja">日本語</option>
+                                    <option value="zh">中文</option>
+                                    <option value="es">Español</option>
+                                    <option value="fr">Français</option>
+                                    <option value="de">Deutsch</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Content Processing</h3>
+                            <span class="setting-badge">Advanced</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="min-content-length">Minimum content length for summary</label>
+                            <div class="range-input">
+                                <input type="range" id="min-content-length" class="setting-range" min="100" max="2000" step="100" value="500">
+                                <div class="range-labels">
+                                    <span>100</span>
+                                    <span class="range-value" id="min-content-value">500 words</span>
+                                    <span>2000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="extract-images" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Include image descriptions in summaries</span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="extract-links" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Include important links in summaries</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>        
+    
+            <!-- Storage Settings Tab -->
+            <section id="storage-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title">Storage & Data Management</h2>
+                    <p class="section-description">Manage your saved pages and storage preferences</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Storage Limits</h3>
+                            <div class="storage-usage" id="storage-usage">
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="usage-text">450 MB / 1 GB used</span>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="max-pages">Maximum saved pages</label>
+                            <div class="number-input">
+                                <input type="number" id="max-pages" class="setting-input" min="10" max="10000" value="1000">
+                                <span class="input-suffix">pages</span>
+                            </div>
+                            <p class="setting-description">Oldest pages will be automatically removed when limit is reached</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="auto-cleanup">Auto-cleanup after</label>
+                            <select id="auto-cleanup" class="setting-select">
+                                <option value="never">Never</option>
+                                <option value="30">30 days</option>
+                                <option value="90">90 days</option>
+                                <option value="180">6 months</option>
+                                <option value="365">1 year</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Image & Thumbnail Settings</h3>
+                            <span class="setting-badge">Performance</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="thumbnail-quality">Thumbnail quality</label>
+                            <div class="range-input">
+                                <input type="range" id="thumbnail-quality" class="setting-range" min="0.3" max="1" step="0.1" value="0.8">
+                                <div class="range-labels">
+                                    <span>Low</span>
+                                    <span class="range-value" id="thumbnail-quality-value">80%</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                            <p class="setting-description">Higher quality means larger file sizes</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="thumbnail-size">Thumbnail size</label>
+                            <select id="thumbnail-size" class="setting-select">
+                                <option value="small">Small (200x150)</option>
+                                <option value="medium">Medium (400x300)</option>
+                                <option value="large">Large (600x450)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="capture-full-page" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Capture full page screenshots</span>
+                            </label>
+                            <p class="setting-description">May increase storage usage significantly</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Data Management</h3>
+                            <span class="setting-badge danger">Destructive</span>
+                        </div>
+                        
+                        <div class="data-actions">
+                            <button id="export-data" class="btn btn-secondary btn-full">
+                                <span class="icon">📤</span>
+                                Export All Data
+                            </button>
+                            <button id="import-data" class="btn btn-secondary btn-full">
+                                <span class="icon">📥</span>
+                                Import Data
+                            </button>
+                            <button id="clear-cache" class="btn btn-outline btn-full">
+                                <span class="icon">🧹</span>
+                                Clear Cache
+                            </button>
+                            <button id="delete-all-data" class="btn btn-danger btn-full">
+                                <span class="icon">🗑️</span>
+                                Delete All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>     
+       
+            <!-- Privacy Settings Tab -->
+            <section id="privacy-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title">Privacy & Security</h2>
+                    <p class="section-description">Control how your data is handled and protected</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Data Privacy</h3>
+                            <span class="setting-badge">Security</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="encrypt-data" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Encrypt stored data</span>
+                            </label>
+                            <p class="setting-description">Encrypt your saved pages and settings locally</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="incognito-mode" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Work in incognito/private windows</span>
+                            </label>
+                            <p class="setting-description">Allow LaterLens to work in private browsing mode</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="analytics-opt-out" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Opt out of usage analytics</span>
+                            </label>
+                            <p class="setting-description">Disable anonymous usage statistics collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Content Filtering</h3>
+                            <span class="setting-badge">Safety</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="blocked-domains">Blocked domains</label>
+                            <textarea id="blocked-domains" class="setting-textarea" placeholder="example.com&#10;bad-site.org&#10;spam-domain.net" rows="4"></textarea>
+                            <p class="setting-description">Pages from these domains won't be saved (one per line)</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="filter-adult-content" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Filter adult content</span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="require-https" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Only save HTTPS pages</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>  
+          
+            <!-- Advanced Settings Tab -->
+            <section id="advanced-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title">Advanced Settings</h2>
+                    <p class="section-description">Advanced configuration for power users</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Performance</h3>
+                            <span class="setting-badge">Expert</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="concurrent-saves">Concurrent saves</label>
+                            <div class="number-input">
+                                <input type="number" id="concurrent-saves" class="setting-input" min="1" max="10" value="3">
+                                <span class="input-suffix">pages</span>
+                            </div>
+                            <p class="setting-description">Maximum number of pages to save simultaneously</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="cache-duration">Cache duration</label>
+                            <select id="cache-duration" class="setting-select">
+                                <option value="300">5 minutes</option>
+                                <option value="900">15 minutes</option>
+                                <option value="1800">30 minutes</option>
+                                <option value="3600">1 hour</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="preload-content" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Preload page content</span>
+                            </label>
+                            <p class="setting-description">May improve performance but uses more memory</p>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Developer Options</h3>
+                            <span class="setting-badge">Debug</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="debug-mode" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Enable debug mode</span>
+                            </label>
+                            <p class="setting-description">Show detailed logs in browser console</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="experimental-features" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Enable experimental features</span>
+                            </label>
+                            <p class="setting-description">Access beta features (may be unstable)</p>
+                        </div>
+                        
+                        <div class="developer-actions">
+                            <button id="view-logs" class="btn btn-outline btn-small">
+                                <span class="icon">📋</span>
+                                View Logs
+                            </button>
+                            <button id="reset-extension" class="btn btn-outline btn-small">
+                                <span class="icon">🔄</span>
+                                Reset Extension
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Backup & Sync</h3>
+                            <span class="setting-badge">Cloud</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="auto-backup" class="setting-checkbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="setting-text">Enable automatic backups</span>
+                            </label>
+                            <p class="setting-description">Backup your data to local storage periodically</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="backup-frequency">Backup frequency</label>
+                            <select id="backup-frequency" class="setting-select">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        
+                        <div class="backup-actions">
+                            <button id="create-backup" class="btn btn-secondary btn-small">
+                                <span class="icon">💾</span>
+                                Create Backup Now
+                            </button>
+                            <button id="restore-backup" class="btn btn-outline btn-small">
+                                <span class="icon">📂</span>
+                                Restore Backup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-actions">
+                    <button id="save-settings" class="btn btn-primary">
+                        <span class="icon">💾</span>
+                        Save Settings
+                    </button>
+                    <button id="reset-settings" class="btn btn-secondary">
+                        <span class="icon">🔄</span>
+                        Reset to Defaults
+                    </button>
+                </div>
+                
+                <div class="footer-info">
+                    <div class="save-status" id="save-status">
+                        <span class="status-text" id="save-status-text">Ready</span>
+                    </div>
+                    <div class="version-info">
+                        <span id="version-info">LaterLens v1.0.0</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Modals -->
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Action</h3>
+                <button class="modal-close" title="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon"></div>
+                <p class="modal-message">Are you sure you want to proceed?</p>
+                <div class="modal-details"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-danger modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test Summary Modal -->
+    <div id="test-summary-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Test AI Summary</h3>
+                <button class="modal-close" title="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="test-content" class="label">Test Content</label>
+                    <textarea id="test-content" class="textarea" rows="6" placeholder="Enter some text to test AI summarization..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button id="generate-test-summary" class="btn btn-primary">
+                        <span class="btn-text">Generate Summary</span>
+                        <span class="btn-spinner spinner-small hidden"></span>
+                    </button>
+                </div>
+                
+                <div id="test-result" class="test-result hidden">
+                    <h4>Generated Summary:</h4>
+                    <div class="summary-output" id="summary-output"></div>
+                    <div class="summary-metadata">
+                        <span class="metadata-item">Length: <span id="summary-length-display">0</span> characters</span>
+                        <span class="metadata-item">Time: <span id="summary-time-display">0</span>ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="toast notification-toast hidden">
+        <div class="toast-content">
+            <span class="toast-icon"></span>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" title="Close">✕</button>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../utils/settings.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/models.js"></script>
+    <script src="../utils/ai-summary.js"></script>
+    <script src="../utils/integration-helpers.js"></script>
+    <script src="../utils/i18n.js"></script>
+    <script src="../utils/localize.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>    <!
+-- Scripts -->
+    <script src="../utils/settings.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/models.js"></script>
+    <script src="../utils/ai-summary.js"></script>
+    <script src="../utils/i18n.js"></script>
+    <script src="../utils/localize.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

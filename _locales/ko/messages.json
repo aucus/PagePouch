@@ -1,0 +1,928 @@
+{
+  "extensionName": {
+    "message": "LaterLens",
+    "description": "확장 프로그램 이름"
+  },
+  "extensionDescription": {
+    "message": "AI 요약 기능과 함께 나중에 읽을 페이지를 저장하세요",
+    "description": "확장 프로그램 설명"
+  },
+  
+  "popup_title": {
+    "message": "LaterLens - 저장된 페이지",
+    "description": "팝업 창 제목"
+  },
+  "popup_empty_title": {
+    "message": "저장된 페이지가 없습니다",
+    "description": "저장된 페이지가 없을 때 제목"
+  },
+  "popup_empty_description": {
+    "message": "나중에 읽을 흥미로운 페이지를 저장해보세요",
+    "description": "저장된 페이지가 없을 때 설명"
+  },
+  "popup_save_current": {
+    "message": "현재 페이지 저장",
+    "description": "현재 페이지 저장 버튼"
+  },
+  "popup_search_placeholder": {
+    "message": "저장된 페이지 검색...",
+    "description": "검색 입력 필드 플레이스홀더"
+  },
+  "popup_delete_all": {
+    "message": "모두 삭제",
+    "description": "모든 페이지 삭제 버튼"
+  },
+  "popup_delete_confirm": {
+    "message": "저장된 모든 페이지를 삭제하시겠습니까?",
+    "description": "모든 페이지 삭제 확인 메시지"
+  },
+  "popup_delete_single_confirm": {
+    "message": "이 페이지를 삭제하시겠습니까?",
+    "description": "단일 페이지 삭제 확인 메시지"
+  },
+  "popup_loading": {
+    "message": "로딩 중...",
+    "description": "로딩 메시지"
+  },
+  "popup_error_loading": {
+    "message": "저장된 페이지를 불러오는 중 오류가 발생했습니다",
+    "description": "로딩 실패 오류 메시지"
+  },
+  "popup_no_results": {
+    "message": "검색 결과가 없습니다",
+    "description": "검색 결과 없음 메시지"
+  },
+  
+  "options_title": {
+    "message": "LaterLens 설정",
+    "description": "옵션 페이지 제목"
+  },
+  "options_subtitle": {
+    "message": "읽기 목록 기본 설정과 AI 기능을 구성하세요",
+    "description": "옵션 페이지 부제목"
+  },
+  
+  "tab_general": {
+    "message": "일반",
+    "description": "일반 설정 탭"
+  },
+  "tab_ai": {
+    "message": "AI 및 요약",
+    "description": "AI 설정 탭"
+  },
+  "tab_storage": {
+    "message": "저장소",
+    "description": "저장소 설정 탭"
+  },
+  "tab_privacy": {
+    "message": "개인정보",
+    "description": "개인정보 설정 탭"
+  },
+  "tab_advanced": {
+    "message": "고급",
+    "description": "고급 설정 탭"
+  },
+  
+  "general_settings_title": {
+    "message": "일반 설정",
+    "description": "일반 설정 섹션 제목"
+  },
+  "general_settings_description": {
+    "message": "LaterLens 사용 경험을 위한 기본 구성",
+    "description": "일반 설정 섹션 설명"
+  },
+  "default_actions_title": {
+    "message": "기본 동작",
+    "description": "기본 동작 카드 제목"
+  },
+  "auto_save_label": {
+    "message": "방문 시 페이지 자동 저장",
+    "description": "자동 저장 체크박스 라벨"
+  },
+  "auto_save_description": {
+    "message": "읽기 시간을 기반으로 흥미로운 페이지를 자동으로 저장합니다",
+    "description": "자동 저장 설명"
+  },
+  "show_notifications_label": {
+    "message": "저장 알림 표시",
+    "description": "알림 표시 체크박스 라벨"
+  },
+  "show_notifications_description": {
+    "message": "페이지가 저장될 때 알림을 표시합니다",
+    "description": "알림 표시 설명"
+  },
+  "default_view_label": {
+    "message": "기본 팝업 보기",
+    "description": "기본 보기 선택 라벨"
+  },
+  "default_view_description": {
+    "message": "팝업에서 저장된 페이지가 표시되는 방식",
+    "description": "기본 보기 설명"
+  },
+  "view_grid": {
+    "message": "격자 보기",
+    "description": "격자 보기 옵션"
+  },
+  "view_list": {
+    "message": "목록 보기",
+    "description": "목록 보기 옵션"
+  },
+  "view_compact": {
+    "message": "간단 보기",
+    "description": "간단 보기 옵션"
+  },
+  
+  "keyboard_shortcuts_title": {
+    "message": "키보드 단축키",
+    "description": "키보드 단축키 카드 제목"
+  },
+  "shortcut_save_page": {
+    "message": "현재 페이지 저장",
+    "description": "페이지 저장 단축키 설명"
+  },
+  "shortcut_open_popup": {
+    "message": "팝업 열기",
+    "description": "팝업 열기 단축키 설명"
+  },
+  "shortcut_quick_search": {
+    "message": "빠른 검색",
+    "description": "빠른 검색 단축키 설명"
+  },
+  "enable_shortcuts_label": {
+    "message": "키보드 단축키 사용",
+    "description": "단축키 사용 체크박스 라벨"
+  },
+  
+  "ai_settings_title": {
+    "message": "AI 및 요약 설정",
+    "description": "AI 설정 섹션 제목"
+  },
+  "ai_settings_description": {
+    "message": "AI 기반 기능과 자동 요약을 구성하세요",
+    "description": "AI 설정 섹션 설명"
+  },
+  "ai_summary_title": {
+    "message": "AI 요약",
+    "description": "AI 요약 카드 제목"
+  },
+  "ai_provider_label": {
+    "message": "AI 제공업체",
+    "description": "AI 제공업체 선택 라벨"
+  },
+  "api_key_label": {
+    "message": "API 키",
+    "description": "API 키 입력 라벨"
+  },
+  "api_key_placeholder": {
+    "message": "API 키를 입력하세요",
+    "description": "API 키 입력 플레이스홀더"
+  },
+  "api_key_description": {
+    "message": "API 키는 로컬에 저장되며 외부로 전송되지 않습니다",
+    "description": "API 키 설명"
+  },
+  "api_key_help_link": {
+    "message": "API 키 받는 방법",
+    "description": "API 키 도움말 링크 텍스트"
+  },
+  "test_api_button": {
+    "message": "테스트",
+    "description": "API 테스트 버튼 텍스트"
+  },
+  "summary_length_label": {
+    "message": "요약 길이",
+    "description": "요약 길이 슬라이더 라벨"
+  },
+  "summary_style_label": {
+    "message": "요약 스타일",
+    "description": "요약 스타일 라디오 그룹 라벨"
+  },
+  "style_concise": {
+    "message": "간결함",
+    "description": "간결한 요약 스타일"
+  },
+  "style_detailed": {
+    "message": "상세함",
+    "description": "상세한 요약 스타일"
+  },
+  "style_bullet": {
+    "message": "글머리 기호",
+    "description": "글머리 기호 요약 스타일"
+  },
+  "summary_language_label": {
+    "message": "선호 언어",
+    "description": "요약 언어 선택 라벨"
+  },
+  "language_auto": {
+    "message": "자동 감지",
+    "description": "자동 감지 언어 옵션"
+  },
+  "language_english": {
+    "message": "English",
+    "description": "영어 언어 옵션"
+  },
+  "language_korean": {
+    "message": "한국어",
+    "description": "한국어 언어 옵션"
+  },
+  "language_japanese": {
+    "message": "日本語",
+    "description": "일본어 언어 옵션"
+  },
+  "language_chinese": {
+    "message": "中文",
+    "description": "중국어 언어 옵션"
+  },
+  "language_spanish": {
+    "message": "Español",
+    "description": "스페인어 언어 옵션"
+  },
+  "language_french": {
+    "message": "Français",
+    "description": "프랑스어 언어 옵션"
+  },
+  "language_german": {
+    "message": "Deutsch",
+    "description": "독일어 언어 옵션"
+  },
+  
+  "content_processing_title": {
+    "message": "콘텐츠 처리",
+    "description": "콘텐츠 처리 카드 제목"
+  },
+  "min_content_length_label": {
+    "message": "요약을 위한 최소 콘텐츠 길이",
+    "description": "최소 콘텐츠 길이 슬라이더 라벨"
+  },
+  "extract_images_label": {
+    "message": "요약에 이미지 설명 포함",
+    "description": "이미지 추출 체크박스 라벨"
+  },
+  "extract_links_label": {
+    "message": "요약에 중요한 링크 포함",
+    "description": "링크 추출 체크박스 라벨"
+  },
+  
+  "storage_settings_title": {
+    "message": "저장소 및 데이터 관리",
+    "description": "저장소 설정 섹션 제목"
+  },
+  "storage_settings_description": {
+    "message": "저장된 페이지와 저장소 기본 설정을 관리하세요",
+    "description": "저장소 설정 섹션 설명"
+  },
+  "storage_limits_title": {
+    "message": "저장소 제한",
+    "description": "저장소 제한 카드 제목"
+  },
+  "max_pages_label": {
+    "message": "최대 저장 페이지 수",
+    "description": "최대 페이지 입력 라벨"
+  },
+  "max_pages_description": {
+    "message": "제한에 도달하면 가장 오래된 페이지가 자동으로 제거됩니다",
+    "description": "최대 페이지 설명"
+  },
+  "auto_cleanup_label": {
+    "message": "자동 정리 기간",
+    "description": "자동 정리 선택 라벨"
+  },
+  "cleanup_never": {
+    "message": "안 함",
+    "description": "정리 안 함 옵션"
+  },
+  "cleanup_30_days": {
+    "message": "30일",
+    "description": "30일 정리 옵션"
+  },
+  "cleanup_90_days": {
+    "message": "90일",
+    "description": "90일 정리 옵션"
+  },
+  "cleanup_6_months": {
+    "message": "6개월",
+    "description": "6개월 정리 옵션"
+  },
+  "cleanup_1_year": {
+    "message": "1년",
+    "description": "1년 정리 옵션"
+  },
+  
+  "image_settings_title": {
+    "message": "이미지 및 썸네일 설정",
+    "description": "이미지 설정 카드 제목"
+  },
+  "thumbnail_quality_label": {
+    "message": "썸네일 품질",
+    "description": "썸네일 품질 슬라이더 라벨"
+  },
+  "thumbnail_quality_description": {
+    "message": "높은 품질은 더 큰 파일 크기를 의미합니다",
+    "description": "썸네일 품질 설명"
+  },
+  "thumbnail_size_label": {
+    "message": "썸네일 크기",
+    "description": "썸네일 크기 선택 라벨"
+  },
+  "size_small": {
+    "message": "작음 (200x150)",
+    "description": "작은 썸네일 크기 옵션"
+  },
+  "size_medium": {
+    "message": "보통 (400x300)",
+    "description": "보통 썸네일 크기 옵션"
+  },
+  "size_large": {
+    "message": "큼 (600x450)",
+    "description": "큰 썸네일 크기 옵션"
+  },
+  "capture_full_page_label": {
+    "message": "전체 페이지 스크린샷 캡처",
+    "description": "전체 페이지 캡처 체크박스 라벨"
+  },
+  "capture_full_page_description": {
+    "message": "저장소 사용량이 크게 증가할 수 있습니다",
+    "description": "전체 페이지 캡처 설명"
+  },
+  
+  "data_management_title": {
+    "message": "데이터 관리",
+    "description": "데이터 관리 카드 제목"
+  },
+  "export_data_button": {
+    "message": "모든 데이터 내보내기",
+    "description": "데이터 내보내기 버튼 텍스트"
+  },
+  "import_data_button": {
+    "message": "데이터 가져오기",
+    "description": "데이터 가져오기 버튼 텍스트"
+  },
+  "clear_cache_button": {
+    "message": "캐시 지우기",
+    "description": "캐시 지우기 버튼 텍스트"
+  },
+  "delete_all_data_button": {
+    "message": "모든 데이터 삭제",
+    "description": "모든 데이터 삭제 버튼 텍스트"
+  },
+  
+  "privacy_settings_title": {
+    "message": "개인정보 및 보안",
+    "description": "개인정보 설정 섹션 제목"
+  },
+  "privacy_settings_description": {
+    "message": "데이터 처리 및 보호 방식을 제어하세요",
+    "description": "개인정보 설정 섹션 설명"
+  },
+  "data_privacy_title": {
+    "message": "데이터 개인정보",
+    "description": "데이터 개인정보 카드 제목"
+  },
+  "encrypt_data_label": {
+    "message": "저장된 데이터 암호화",
+    "description": "데이터 암호화 체크박스 라벨"
+  },
+  "encrypt_data_description": {
+    "message": "저장된 페이지와 설정을 로컬에서 암호화합니다",
+    "description": "데이터 암호화 설명"
+  },
+  "incognito_mode_label": {
+    "message": "시크릿/개인 창에서 작동",
+    "description": "시크릿 모드 체크박스 라벨"
+  },
+  "incognito_mode_description": {
+    "message": "LaterLens가 개인 브라우징 모드에서 작동하도록 허용합니다",
+    "description": "시크릿 모드 설명"
+  },
+  "analytics_opt_out_label": {
+    "message": "사용 분석 수집 거부",
+    "description": "분석 거부 체크박스 라벨"
+  },
+  "analytics_opt_out_description": {
+    "message": "익명 사용 통계 수집을 비활성화합니다",
+    "description": "분석 거부 설명"
+  },
+  
+  "content_filtering_title": {
+    "message": "콘텐츠 필터링",
+    "description": "콘텐츠 필터링 카드 제목"
+  },
+  "blocked_domains_label": {
+    "message": "차단된 도메인",
+    "description": "차단된 도메인 텍스트영역 라벨"
+  },
+  "blocked_domains_placeholder": {
+    "message": "example.com\nbad-site.org\nspam-domain.net",
+    "description": "차단된 도메인 텍스트영역 플레이스홀더"
+  },
+  "blocked_domains_description": {
+    "message": "이 도메인의 페이지는 저장되지 않습니다 (한 줄에 하나씩)",
+    "description": "차단된 도메인 설명"
+  },
+  "filter_adult_content_label": {
+    "message": "성인 콘텐츠 필터링",
+    "description": "성인 콘텐츠 필터링 체크박스 라벨"
+  },
+  "require_https_label": {
+    "message": "HTTPS 페이지만 저장",
+    "description": "HTTPS 필수 체크박스 라벨"
+  },
+  
+  "advanced_settings_title": {
+    "message": "고급 설정",
+    "description": "고급 설정 섹션 제목"
+  },
+  "advanced_settings_description": {
+    "message": "고급 사용자를 위한 고급 구성",
+    "description": "고급 설정 섹션 설명"
+  },
+  "performance_title": {
+    "message": "성능",
+    "description": "성능 카드 제목"
+  },
+  "concurrent_saves_label": {
+    "message": "동시 저장 수",
+    "description": "동시 저장 입력 라벨"
+  },
+  "concurrent_saves_description": {
+    "message": "동시에 저장할 수 있는 최대 페이지 수",
+    "description": "동시 저장 설명"
+  },
+  "cache_duration_label": {
+    "message": "캐시 지속 시간",
+    "description": "캐시 지속 시간 선택 라벨"
+  },
+  "duration_5_minutes": {
+    "message": "5분",
+    "description": "5분 지속 시간 옵션"
+  },
+  "duration_15_minutes": {
+    "message": "15분",
+    "description": "15분 지속 시간 옵션"
+  },
+  "duration_30_minutes": {
+    "message": "30분",
+    "description": "30분 지속 시간 옵션"
+  },
+  "duration_1_hour": {
+    "message": "1시간",
+    "description": "1시간 지속 시간 옵션"
+  },
+  "preload_content_label": {
+    "message": "페이지 콘텐츠 미리 로드",
+    "description": "콘텐츠 미리 로드 체크박스 라벨"
+  },
+  "preload_content_description": {
+    "message": "성능을 향상시킬 수 있지만 더 많은 메모리를 사용합니다",
+    "description": "콘텐츠 미리 로드 설명"
+  },
+  
+  "developer_options_title": {
+    "message": "개발자 옵션",
+    "description": "개발자 옵션 카드 제목"
+  },
+  "debug_mode_label": {
+    "message": "디버그 모드 사용",
+    "description": "디버그 모드 체크박스 라벨"
+  },
+  "debug_mode_description": {
+    "message": "브라우저 콘솔에 상세한 로그를 표시합니다",
+    "description": "디버그 모드 설명"
+  },
+  "experimental_features_label": {
+    "message": "실험적 기능 사용",
+    "description": "실험적 기능 체크박스 라벨"
+  },
+  "experimental_features_description": {
+    "message": "베타 기능에 액세스합니다 (불안정할 수 있음)",
+    "description": "실험적 기능 설명"
+  },
+  "view_logs_button": {
+    "message": "로그 보기",
+    "description": "로그 보기 버튼 텍스트"
+  },
+  "reset_extension_button": {
+    "message": "확장 프로그램 재설정",
+    "description": "확장 프로그램 재설정 버튼 텍스트"
+  },
+  
+  "backup_sync_title": {
+    "message": "백업 및 동기화",
+    "description": "백업 동기화 카드 제목"
+  },
+  "auto_backup_label": {
+    "message": "자동 백업 사용",
+    "description": "자동 백업 체크박스 라벨"
+  },
+  "auto_backup_description": {
+    "message": "데이터를 로컬 저장소에 주기적으로 백업합니다",
+    "description": "자동 백업 설명"
+  },
+  "backup_frequency_label": {
+    "message": "백업 빈도",
+    "description": "백업 빈도 선택 라벨"
+  },
+  "frequency_daily": {
+    "message": "매일",
+    "description": "매일 빈도 옵션"
+  },
+  "frequency_weekly": {
+    "message": "매주",
+    "description": "매주 빈도 옵션"
+  },
+  "frequency_monthly": {
+    "message": "매월",
+    "description": "매월 빈도 옵션"
+  },
+  "create_backup_button": {
+    "message": "지금 백업 생성",
+    "description": "백업 생성 버튼 텍스트"
+  },
+  "restore_backup_button": {
+    "message": "백업 복원",
+    "description": "백업 복원 버튼 텍스트"
+  },
+  
+  "save_settings_button": {
+    "message": "설정 저장",
+    "description": "설정 저장 버튼 텍스트"
+  },
+  "reset_settings_button": {
+    "message": "기본값으로 재설정",
+    "description": "설정 재설정 버튼 텍스트"
+  },
+  "import_settings_button": {
+    "message": "가져오기",
+    "description": "설정 가져오기 버튼 텍스트"
+  },
+  "export_settings_button": {
+    "message": "내보내기",
+    "description": "설정 내보내기 버튼 텍스트"
+  },
+  
+  "status_ready": {
+    "message": "준비됨",
+    "description": "준비 상태 텍스트"
+  },
+  "status_saving": {
+    "message": "설정 저장 중...",
+    "description": "저장 중 상태 텍스트"
+  },
+  "status_saved": {
+    "message": "설정이 성공적으로 저장되었습니다!",
+    "description": "저장됨 상태 텍스트"
+  },
+  "status_error": {
+    "message": "설정 저장에 실패했습니다",
+    "description": "오류 상태 텍스트"
+  },
+  
+  "confirm_title": {
+    "message": "작업 확인",
+    "description": "확인 모달 제목"
+  },
+  "confirm_message": {
+    "message": "계속 진행하시겠습니까?",
+    "description": "기본 확인 메시지"
+  },
+  "confirm_button": {
+    "message": "확인",
+    "description": "확인 버튼 텍스트"
+  },
+  "cancel_button": {
+    "message": "취소",
+    "description": "취소 버튼 텍스트"
+  },
+  
+  "toast_success": {
+    "message": "작업이 성공적으로 완료되었습니다!",
+    "description": "성공 토스트 메시지"
+  },
+  "toast_error": {
+    "message": "오류가 발생했습니다. 다시 시도해주세요.",
+    "description": "오류 토스트 메시지"
+  },
+  "toast_warning": {
+    "message": "경고: 입력을 확인해주세요.",
+    "description": "경고 토스트 메시지"
+  },
+  "toast_info": {
+    "message": "정보가 업데이트되었습니다.",
+    "description": "정보 토스트 메시지"
+  },
+  
+  "api_status_not_configured": {
+    "message": "구성되지 않음",
+    "description": "API 미구성 상태"
+  },
+  "api_status_testing": {
+    "message": "API 연결 테스트 중...",
+    "description": "API 테스트 중 상태"
+  },
+  "api_status_success": {
+    "message": "✅ API 연결 성공!",
+    "description": "API 성공 상태"
+  },
+  "api_status_error": {
+    "message": "❌ API 테스트 실패",
+    "description": "API 오류 상태"
+  },
+  
+  "badge_basic": {
+    "message": "기본",
+    "description": "기본 배지 텍스트"
+  },
+  "badge_productivity": {
+    "message": "생산성",
+    "description": "생산성 배지 텍스트"
+  },
+  "badge_advanced": {
+    "message": "고급",
+    "description": "고급 배지 텍스트"
+  },
+  "badge_performance": {
+    "message": "성능",
+    "description": "성능 배지 텍스트"
+  },
+  "badge_security": {
+    "message": "보안",
+    "description": "보안 배지 텍스트"
+  },
+  "badge_safety": {
+    "message": "안전",
+    "description": "안전 배지 텍스트"
+  },
+  "badge_expert": {
+    "message": "전문가",
+    "description": "전문가 배지 텍스트"
+  },
+  "badge_debug": {
+    "message": "디버그",
+    "description": "디버그 배지 텍스트"
+  },
+  "badge_cloud": {
+    "message": "클라우드",
+    "description": "클라우드 배지 텍스트"
+  },
+  "badge_danger": {
+    "message": "위험",
+    "description": "위험 배지 텍스트"
+  },
+  
+  "range_brief": {
+    "message": "간단",
+    "description": "간단 범위 라벨"
+  },
+  "range_detailed": {
+    "message": "상세",
+    "description": "상세 범위 라벨"
+  },
+  "range_low": {
+    "message": "낮음",
+    "description": "낮음 범위 라벨"
+  },
+  "range_high": {
+    "message": "높음",
+    "description": "높음 범위 라벨"
+  },
+  
+  "unit_chars": {
+    "message": "글자",
+    "description": "글자 단위"
+  },
+  "unit_words": {
+    "message": "단어",
+    "description": "단어 단위"
+  },
+  "unit_pages": {
+    "message": "페이지",
+    "description": "페이지 단위"
+  },
+  "unit_percent": {
+    "message": "%",
+    "description": "퍼센트 단위"
+  },
+  "unit_mb": {
+    "message": "MB",
+    "description": "메가바이트 단위"
+  },
+  "unit_gb": {
+    "message": "GB",
+    "description": "기가바이트 단위"
+  },
+  
+  "time_just_now": {
+    "message": "방금 전",
+    "description": "방금 전 시간 표시"
+  },
+  "time_minute_ago": {
+    "message": "분 전",
+    "description": "분 전 시간 표시"
+  },
+  "time_minutes_ago": {
+    "message": "분 전",
+    "description": "분 전 시간 표시"
+  },
+  "time_hour_ago": {
+    "message": "시간 전",
+    "description": "시간 전 시간 표시"
+  },
+  "time_hours_ago": {
+    "message": "시간 전",
+    "description": "시간 전 시간 표시"
+  },
+  "time_day_ago": {
+    "message": "일 전",
+    "description": "일 전 시간 표시"
+  },
+  "time_days_ago": {
+    "message": "일 전",
+    "description": "일 전 시간 표시"
+  },
+  "time_yesterday": {
+    "message": "어제",
+    "description": "어제 시간 표시"
+  },
+  "time_today": {
+    "message": "오늘",
+    "description": "오늘 시간 표시"
+  },
+  "time_tomorrow": {
+    "message": "내일",
+    "description": "내일 시간 표시"
+  },
+  
+  "weekday_sunday": {
+    "message": "일요일",
+    "description": "일요일 요일명"
+  },
+  "weekday_monday": {
+    "message": "월요일",
+    "description": "월요일 요일명"
+  },
+  "weekday_tuesday": {
+    "message": "화요일",
+    "description": "화요일 요일명"
+  },
+  "weekday_wednesday": {
+    "message": "수요일",
+    "description": "수요일 요일명"
+  },
+  "weekday_thursday": {
+    "message": "목요일",
+    "description": "목요일 요일명"
+  },
+  "weekday_friday": {
+    "message": "금요일",
+    "description": "금요일 요일명"
+  },
+  "weekday_saturday": {
+    "message": "토요일",
+    "description": "토요일 요일명"
+  },
+  
+  "month_january": {
+    "message": "1월",
+    "description": "1월 월명"
+  },
+  "month_february": {
+    "message": "2월",
+    "description": "2월 월명"
+  },
+  "month_march": {
+    "message": "3월",
+    "description": "3월 월명"
+  },
+  "month_april": {
+    "message": "4월",
+    "description": "4월 월명"
+  },
+  "month_may": {
+    "message": "5월",
+    "description": "5월 월명"
+  },
+  "month_june": {
+    "message": "6월",
+    "description": "6월 월명"
+  },
+  "month_july": {
+    "message": "7월",
+    "description": "7월 월명"
+  },
+  "month_august": {
+    "message": "8월",
+    "description": "8월 월명"
+  },
+  "month_september": {
+    "message": "9월",
+    "description": "9월 월명"
+  },
+  "month_october": {
+    "message": "10월",
+    "description": "10월 월명"
+  },
+  "month_november": {
+    "message": "11월",
+    "description": "11월 월명"
+  },
+  "month_december": {
+    "message": "12월",
+    "description": "12월 월명"
+  },
+  
+  "sort_newest_first": {
+    "message": "최신순",
+    "description": "최신순 정렬 옵션"
+  },
+  "sort_oldest_first": {
+    "message": "오래된순",
+    "description": "오래된순 정렬 옵션"
+  },
+  "sort_title_az": {
+    "message": "제목 가나다순",
+    "description": "제목 가나다순 정렬 옵션"
+  },
+  "sort_title_za": {
+    "message": "제목 역순",
+    "description": "제목 역순 정렬 옵션"
+  },
+  
+  "filter_all": {
+    "message": "전체",
+    "description": "전체 항목 필터 옵션"
+  },
+  "filter_recent": {
+    "message": "최근",
+    "description": "최근 항목 필터 옵션"
+  },
+  "filter_favorites": {
+    "message": "즐겨찾기",
+    "description": "즐겨찾기 항목 필터 옵션"
+  },
+  
+  "clear_search": {
+    "message": "검색 지우기",
+    "description": "검색 지우기 버튼 제목"
+  },
+  "sync_status_title": {
+    "message": "동기화 상태",
+    "description": "동기화 상태 표시기 제목"
+  },
+  
+  "loading_pages": {
+    "message": "페이지 로딩 중...",
+    "description": "페이지 로딩 메시지"
+  },
+  "loading_saving": {
+    "message": "페이지 저장 중...",
+    "description": "페이지 저장 메시지"
+  },
+  "loading_deleting": {
+    "message": "삭제 중...",
+    "description": "삭제 메시지"
+  },
+  "loading_searching": {
+    "message": "검색 중...",
+    "description": "검색 메시지"
+  },
+  "loading_generating_summary": {
+    "message": "AI 요약 생성 중...",
+    "description": "AI 요약 생성 메시지"
+  },
+  "loading_capturing_screenshot": {
+    "message": "스크린샷 캡처 중...",
+    "description": "스크린샷 캡처 메시지"
+  },
+  "loading_extracting_content": {
+    "message": "콘텐츠 추출 중...",
+    "description": "콘텐츠 추출 메시지"
+  },
+  "loading_testing_api": {
+    "message": "API 연결 테스트 중...",
+    "description": "API 연결 테스트 메시지"
+  },
+  "loading_exporting": {
+    "message": "데이터 내보내기 중...",
+    "description": "데이터 내보내기 메시지"
+  },
+  "loading_importing": {
+    "message": "데이터 가져오기 중...",
+    "description": "데이터 가져오기 메시지"
+  },
+  "loading_please_wait": {
+    "message": "잠시만 기다려주세요...",
+    "description": "잠시만 기다려주세요 메시지"
+  },
+  "loading_processing": {
+    "message": "처리 중...",
+    "description": "처리 중 메시지"
+  },
+  "loading_almost_done": {
+    "message": "거의 완료되었습니다...",
+    "description": "거의 완료 메시지"
+  },
+  "loading_complete": {
+    "message": "완료!",
+    "description": "로딩 완료 메시지"
+  }
+}

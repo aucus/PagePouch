@@ -1,0 +1,27 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#4F46E5" stroke="#3730A3" stroke-width="2"/>
+  
+  <!-- Lens/magnifying glass -->
+  <circle cx="52" cy="52" r="20" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  <line x1="68" y1="68" x2="84" y2="84" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Document/page icon -->
+  <rect x="72" y="32" width="24" height="32" rx="2" fill="#FFFFFF"/>
+  <rect x="76" y="38" width="16" height="2" fill="#4F46E5"/>
+  <rect x="76" y="42" width="12" height="2" fill="#4F46E5"/>
+  <rect x="76" y="46" width="14" height="2" fill="#4F46E5"/>
+  <rect x="76" y="50" width="10" height="2" fill="#4F46E5"/>
+  
+  <!-- Bookmark/save indicator -->
+  <path d="M88 24 L96 24 L96 40 L92 36 L88 40 Z" fill="#F59E0B"/>
+  
+  <!-- Subtle gradient overlay -->
+  <defs>
+    <radialGradient id="gradient" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="url(#gradient)"/>
+</svg>
