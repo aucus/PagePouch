@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PagePouch Settings</title>
+    <link rel="stylesheet" href="options.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-main">
+                    <div class="logo">
+                        <div class="logo-icon">📖</div>
+                        <h1 class="title" data-i18n="options_title">PagePouch Settings</h1>
+                    </div>
+                    <div class="header-actions">
+                        <button id="import-settings" class="btn btn-outline btn-small" title="Import settings">
+                            Import
+                        </button>
+                        <button id="export-settings" class="btn btn-outline btn-small" title="Export settings">
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <p class="subtitle" data-i18n="options_subtitle">Configure your reading list preferences and AI-powered features</p>
+            </div>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="general">
+                <span data-i18n="tab_general">General</span>
+            </button>
+            <button class="nav-tab" data-tab="ai">
+                <span data-i18n="tab_ai">AI Features</span>
+            </button>
+            <button class="nav-tab" data-tab="storage">
+                <span data-i18n="tab_storage">Storage</span>
+            </button>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main">
+            <!-- General Settings Tab -->
+            <section id="general-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="general_settings_title">General Settings</h2>
+                    <p class="section-description" data-i18n="general_settings_description">Basic configuration for your PagePouch experience</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title" data-i18n="basic_settings_title">Basic Settings</h3>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="auto-save" class="setting-checkbox">
+                                <span class="setting-text" data-i18n="auto_save_label">Auto-save interesting pages</span>
+                            </label>
+                            <p class="setting-description" data-i18n="auto_save_description">Automatically save pages when you spend time reading them</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="show-notifications" class="setting-checkbox">
+                                <span class="setting-text" data-i18n="show_notifications_label">Show save notifications</span>
+                            </label>
+                            <p class="setting-description" data-i18n="show_notifications_description">Get notified when pages are saved</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="default-view" data-i18n="default_view_label">Default view</label>
+                            <select id="default-view" class="setting-select">
+                                <option value="grid" data-i18n="view_grid">Grid</option>
+                                <option value="list" data-i18n="view_list">List</option>
+                                <option value="compact" data-i18n="view_compact">Compact</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="interface-language" data-i18n="interface_language_label">Language</label>
+                            <select id="interface-language" class="setting-select">
+                                <option value="en">English</option>
+                                <option value="ko">한국어</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title" data-i18n="keyboard_shortcuts_title">Keyboard Shortcuts</h3>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <input type="checkbox" id="enable-shortcuts" class="setting-checkbox">
+                                <span class="setting-text" data-i18n="enable_shortcuts_label">Enable keyboard shortcuts</span>
+                            </label>
+                        </div>
+                        
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <span class="shortcut-action" data-i18n="shortcut_save_page">Save current page</span>
+                                <div class="shortcut-keys">
+                                    <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-action" data-i18n="shortcut_open_popup">Open popup</span>
+                                <div class="shortcut-keys">
+                                    <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>     
+       
+            <!-- AI Settings Tab -->
+            <section id="ai-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="ai_settings_title">AI & Summary Settings</h2>
+                    <p class="section-description" data-i18n="ai_settings_description">Configure AI-powered features and automatic summarization</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title" data-i18n="ai_summary_title">AI Summary</h3>
+                            <div class="setting-toggle">
+                                <input type="checkbox" id="enable-ai-summary" class="toggle-checkbox">
+                                <label for="enable-ai-summary" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-settings" id="ai-settings-panel">
+                            <div class="setting-group">
+                                <label class="setting-label" for="ai-provider" data-i18n="ai_provider_label">AI Provider</label>
+                                <select id="ai-provider" class="setting-select">
+                                    <option value="openai">OpenAI</option>
+                                    <option value="anthropic">Anthropic (Claude)</option>
+                                    <option value="gemini">Google Gemini</option>
+                                </select>
+                                <div class="provider-info" id="provider-info">
+                                    <span class="provider-status" id="provider-status" data-i18n="api_status_not_configured">Not configured</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group" id="api-key-group">
+                                <label class="setting-label" for="api-key" data-i18n="api_key_label">API Key</label>
+                                <div class="api-key-input">
+                                    <input type="password" id="api-key" class="setting-input" placeholder="Enter your API key" data-i18n-placeholder="api_key_placeholder">
+                                    <button id="toggle-api-key" class="btn btn-icon" title="Show/Hide API key">
+                                        <span class="icon">👁️</span>
+                                    </button>
+                                    <button id="test-api" class="btn btn-secondary" data-i18n="test_api_button">Test</button>
+                                </div>
+                                <div class="api-key-help">
+                                    <p class="setting-description" data-i18n="api_key_description">Your API key is stored locally and never shared</p>
+                                    <a href="#" id="get-api-key-link" class="help-link" target="_blank" data-i18n="api_key_help_link">How to get an API key</a>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label" for="summary-style" data-i18n="summary_style_label">Summary Style</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="summary-style" value="concise" class="radio-input">
+                                        <span class="radio-text" data-i18n="style_concise">Concise</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="summary-style" value="detailed" class="radio-input">
+                                        <span class="radio-text" data-i18n="style_detailed">Detailed</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label" for="summary-language" data-i18n="summary_language_label">Summary Language</label>
+                                <select id="summary-language" class="setting-select">
+                                    <option value="auto" data-i18n="language_auto">Auto-detect</option>
+                                    <option value="en" data-i18n="language_english">English</option>
+                                    <option value="ko" data-i18n="language_korean">한국어</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>        
+    
+            <!-- Storage Settings Tab -->
+            <section id="storage-tab" class="tab-content">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="storage_settings_title">Storage & Data Management</h2>
+                    <p class="section-description" data-i18n="storage_settings_description">Manage your saved pages and storage preferences</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title" data-i18n="storage_settings_title">Storage Settings</h3>
+                            <div class="storage-usage" id="storage-usage">
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="usage-text">450 MB / 1 GB used</span>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="max-pages" data-i18n="max_pages_label">Maximum saved pages</label>
+                            <div class="number-input">
+                                <input type="number" id="max-pages" class="setting-input" min="10" max="10000" value="1000">
+                                <span class="input-suffix">pages</span>
+                            </div>
+                            <p class="setting-description" data-i18n="max_pages_description">Oldest pages will be automatically removed when limit is reached</p>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="auto-cleanup" data-i18n="auto_cleanup_label">Auto-cleanup after</label>
+                            <select id="auto-cleanup" class="setting-select">
+                                <option value="never" data-i18n="cleanup_never">Never</option>
+                                <option value="30" data-i18n="cleanup_30_days">30 days</option>
+                                <option value="90" data-i18n="cleanup_90_days">90 days</option>
+                                <option value="180" data-i18n="cleanup_6_months">6 months</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label" for="thumbnail-quality">Thumbnail quality</label>
+                            <div class="range-input">
+                                <input type="range" id="thumbnail-quality" class="setting-range" min="0.3" max="1" step="0.1" value="0.8">
+                                <div class="range-labels">
+                                    <span>Low</span>
+                                    <span class="range-value" id="thumbnail-quality-value">80%</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <h3 class="setting-title">Data Management</h3>
+                        </div>
+                        
+                        <div class="data-actions">
+                            <button id="export-data" class="btn btn-secondary btn-full">
+                                Export All Data
+                            </button>
+                            <button id="import-data" class="btn btn-secondary btn-full">
+                                Import Data
+                            </button>
+                            <button id="clear-cache" class="btn btn-outline btn-full">
+                                Clear Cache
+                            </button>
+                            <button id="delete-all-data" class="btn btn-danger btn-full">
+                                Delete All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>     
+       
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-actions">
+                    <button id="save-settings" class="btn btn-primary">
+                        <span data-i18n="save_settings_button">Save Settings</span>
+                    </button>
+                    <button id="reset-settings" class="btn btn-secondary">
+                        <span data-i18n="reset_settings_button">Reset to Defaults</span>
+                    </button>
+                </div>
+                
+                <div class="footer-info">
+                    <div class="save-status" id="save-status">
+                        <span class="status-text" id="save-status-text" data-i18n="status_ready">Ready</span>
+                    </div>
+                    <div class="version-info">
+                        <span id="version-info">PagePouch v1.0.0</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Modals -->
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Action</h3>
+                <button class="modal-close" title="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon"></div>
+                <p class="modal-message">Are you sure you want to proceed?</p>
+                <div class="modal-details"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-danger modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test Summary Modal -->
+    <div id="test-summary-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Test AI Summary</h3>
+                <button class="modal-close" title="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="test-content" class="label">Test Content</label>
+                    <textarea id="test-content" class="textarea" rows="6" placeholder="Enter some text to test AI summarization..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button id="generate-test-summary" class="btn btn-primary">
+                        <span class="btn-text">Generate Summary</span>
+                        <span class="btn-spinner spinner-small hidden"></span>
+                    </button>
+                </div>
+                
+                <div id="test-result" class="test-result hidden">
+                    <h4>Generated Summary:</h4>
+                    <div class="summary-output" id="summary-output"></div>
+                    <div class="summary-metadata">
+                        <span class="metadata-item">Length: <span id="summary-length-display">0</span> characters</span>
+                        <span class="metadata-item">Time: <span id="summary-time-display">0</span>ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="toast notification-toast hidden">
+        <div class="toast-content">
+            <span class="toast-icon"></span>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" title="Close">✕</button>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../utils/settings.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/models.js"></script>
+    <script src="../utils/ai-summary.js"></script>
+    <script src="../utils/integration-helpers.js"></script>
+    <script src="../utils/i18n.js"></script>
+    <script src="../utils/localize.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

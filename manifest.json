@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "version": "1.0.0",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+  
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "PagePouch - Save this page",
+    "default_icon": {
+      "16": "assets/icon16.svg",
+      "32": "assets/icon32.svg",
+      "48": "assets/icon48.svg",
+      "128": "assets/icon128.svg"
+    }
+  },
+  
+  "options_page": "options/options.html",
+  
+  "icons": {
+    "16": "assets/icon16.svg",
+    "32": "assets/icon32.svg",
+    "48": "assets/icon48.svg",
+    "128": "assets/icon128.svg"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "pagepouch",
+  "version": "1.0.0",
+  "description": "A sophisticated Chrome extension for saving and managing web pages with AI-powered summaries",
+  "main": "background.js",
+  "keywords": [
+    "chrome-extension",
+    "reading-list",
+    "ai-summary",
+    "web-scraping",
+    "productivity",
+    "bookmark-manager"
+  ],
+  "author": "PagePouch Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aucus/PagePouch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aucus/PagePouch/issues"
+  },
+  "homepage": "https://github.com/aucus/PagePouch#readme"
+}
