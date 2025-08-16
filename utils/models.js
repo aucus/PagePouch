@@ -441,9 +441,10 @@ class ExtensionSettings {
             }
         }
 
-        // API key validation
+        // API key validation - don't show warning in console, handle in UI instead
         if (data.enableAISummary && (!data.apiKey || data.apiKey.trim().length === 0)) {
-            warnings.push('AI summary is enabled but no API key is provided');
+            // This will be handled in the UI with a more user-friendly message
+            // warnings.push('AI summary is enabled but no API key is provided');
         }
         
         // Log validation results for debugging

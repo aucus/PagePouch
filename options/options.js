@@ -502,6 +502,9 @@ class OptionsManager {
             if (enabled) {
                 aiSettingsPanel.classList.remove('hidden');
                 aiSettingsPanel.classList.add('visible');
+                
+                // Show helpful message if no API key is provided
+                this.checkAPIKeyStatus();
             } else {
                 aiSettingsPanel.classList.remove('visible');
                 aiSettingsPanel.classList.add('hidden');
@@ -565,6 +568,28 @@ class OptionsManager {
         const testButton = document.getElementById('test-api');
         if (testButton) {
             testButton.disabled = true;
+        }
+    }
+
+    checkAPIKeyStatus() {
+        const apiKey = this.settings.apiKey;
+        const isAIEnabled = this.settings.enableAISummary;
+        const apiKeyNotice = document.getElementById('api-key-notice');
+        
+        if (isAIEnabled && (!apiKey || apiKey.trim().length === 0)) {
+            this.updateProviderStatus('⚠️ Please enter an API key to use AI features', 'warning');
+            if (apiKeyNotice) {
+                apiKeyNotice.style.display = 'block';
+            }
+        } else if (isAIEnabled && apiKey && apiKey.trim().length > 0) {
+            this.validateAPIKey(apiKey);
+            if (apiKeyNotice) {
+                apiKeyNotice.style.display = 'none';
+            }
+        } else {
+            if (apiKeyNotice) {
+                apiKeyNotice.style.display = 'none';
+            }
         }
     }
 
@@ -719,12 +744,8 @@ class OptionsManager {
         this.updateProviderInfo(this.settings.apiProvider || 'openai');
         this.updateAPIKeyHelp(this.settings.apiProvider || 'openai');
 
-        // Validate API key if present
-        if (this.settings.apiKey && this.settings.apiKey.trim()) {
-            this.validateAPIKey(this.settings.apiKey);
-        } else {
-            this.clearAPIKeyStatus();
-        }
+        // Check API key status
+        this.checkAPIKeyStatus();
 
         // Apply current language
         this.applyLanguage(this.settings.interfaceLanguage || 'en');

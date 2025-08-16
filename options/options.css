@@ -558,23 +558,31 @@ body {
 }
 
 .provider-status.success {
-    background: #f0f9ff;
+    background: rgba(34, 197, 94, 0.1);
     color: var(--color-success);
+    border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 .provider-status.error {
-    background: #fef2f2;
+    background: rgba(239, 68, 68, 0.1);
     color: var(--color-error);
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .provider-status.warning {
-    background: #fffbeb;
+    background: rgba(245, 158, 11, 0.1);
     color: var(--color-warning);
+    border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 .provider-status.testing {
     background: var(--color-bg-tertiary);
     color: var(--color-text-secondary);
+}
+
+.warning-text {
+    color: var(--color-warning);
+    font-weight: 500;
 }
 
 /* Buttons */
