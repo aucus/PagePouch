@@ -1,6 +1,9 @@
 // Background service worker for PagePouch Chrome extension
 // 백그라운드 서비스 워커 - 확장 프로그램의 핵심 로직 처리
 
+// Import screenshot service
+importScripts('utils/screenshot.js');
+
 /**
  * Extension Lifecycle Manager class
  * 확장 프로그램 생명주기 관리 클래스
@@ -874,6 +877,96 @@ async function handleSavePage(pageData, sendResponse) {
         const result = await chrome.storage.local.get('pages');
         const pages = result.pages || [];
         
+        // Capture thumbnail
+        let thumbnail = '';
+        try {
+            // Check if we have the necessary permissions
+            if (!chrome.tabs || !chrome.tabs.captureVisibleTab) {
+                console.warn('Screenshot capture API not available');
+                thumbnail = '';
+            } else {
+            
+            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            if (tab && tab.id) {
+                console.log('Attempting to capture thumbnail for tab:', tab.id, tab.url, 'status:', tab.status);
+                
+                // Check if we can capture this tab
+                if (tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://') || tab.url.startsWith('moz-extension://') || tab.url.startsWith('file://')) {
+                    console.warn('Cannot capture screenshot from restricted URL:', tab.url);
+                    thumbnail = '';
+                } else {
+                    // Check tab status before capture
+                    if (tab.status !== 'complete') {
+                        console.log('Tab not ready, waiting for completion...');
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                    
+                    // Re-check tab after waiting
+                    const [updatedTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+                    if (!updatedTab || updatedTab.id !== tab.id) {
+                        throw new Error('Tab changed during capture preparation');
+                    }
+                    
+                    const screenshotService = new ScreenshotService();
+                    
+                    // Try simplified capture first
+                    try {
+                        console.log('Attempting direct capture...');
+                        const dataUrl = await chrome.tabs.captureVisibleTab(updatedTab.windowId, {
+                            format: 'png'
+                        });
+                        
+                        if (dataUrl) {
+                            thumbnail = dataUrl;
+                            console.log('Direct capture successful, size:', Math.round(thumbnail.length / 1024), 'KB');
+                        } else {
+                            throw new Error('No data from direct capture');
+                        }
+                    } catch (directError) {
+                        console.warn('Direct capture failed, trying service:', directError.message);
+                        
+                        // Fallback to service-based capture
+                        const captureResult = await screenshotService.captureTab(updatedTab.id, {
+                            quality: 80,
+                            thumbnailWidth: 400,
+                            thumbnailHeight: 300
+                        });
+                        
+                        if (captureResult.success) {
+                            thumbnail = captureResult.dataUrl;
+                            console.log('Service capture successful, size:', Math.round(thumbnail.length / 1024), 'KB');
+                        } else {
+                            console.warn('Service capture failed:', captureResult.error);
+                            thumbnail = captureResult.fallback || '';
+                        }
+                    }
+                }
+            } else {
+                console.warn('No active tab found for thumbnail capture');
+            }
+            } // end else block for API check
+        } catch (error) {
+            console.error('Error capturing thumbnail:', {
+                name: error.name,
+                message: error.message,
+                code: error.code,
+                stack: error.stack
+            });
+            
+            // Create a simple fallback thumbnail
+            try {
+                const screenshotService = new ScreenshotService();
+                thumbnail = screenshotService.createDefaultThumbnail({
+                    thumbnailWidth: 400,
+                    thumbnailHeight: 300
+                });
+                console.log('Fallback thumbnail created successfully');
+            } catch (fallbackError) {
+                console.error('Failed to create fallback thumbnail:', fallbackError);
+                thumbnail = '';
+            }
+        }
+
         // Create new page object
         const newPage = {
             id: Date.now().toString(36) + Math.random().toString(36).substr(2, 9),
@@ -883,7 +976,7 @@ async function handleSavePage(pageData, sendResponse) {
             isFavorite: false,
             tags: [],
             summary: '',
-            thumbnail: '',
+            thumbnail: thumbnail,
             domain: new URL(pageData.url).hostname
         };
         

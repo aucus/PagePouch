@@ -150,15 +150,27 @@ class ScreenshotService {
         // Try with retry logic
         for (let attempt = 1; attempt <= config.retryAttempts; attempt++) {
             try {
+                console.log(`Capture attempt ${attempt}, windowId:`, windowId, 'options:', captureOptions);
+                
+                // Check if we have the necessary permissions
+                if (!chrome.tabs || !chrome.tabs.captureVisibleTab) {
+                    throw new Error('chrome.tabs.captureVisibleTab API not available');
+                }
+                
                 const dataUrl = await chrome.tabs.captureVisibleTab(windowId, captureOptions);
                 
                 if (!dataUrl) {
                     throw new Error('No data returned from capture');
                 }
                 
+                console.log('Capture successful, data URL length:', dataUrl.length);
                 return dataUrl;
             } catch (error) {
-                console.warn(`Capture attempt ${attempt} failed:`, error);
+                console.warn(`Capture attempt ${attempt} failed:`, {
+                    name: error.name,
+                    message: error.message,
+                    code: error.code
+                });
                 
                 if (attempt === config.retryAttempts) {
                     throw error;

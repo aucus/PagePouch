@@ -74,9 +74,9 @@
     --font-size-xl: 18px;
     --font-size-2xl: 20px;
     
-    /* Layout - Increased height by 1.5x */
+    /* Layout - Further increased height */
     --popup-width: 600px;
-    --popup-min-height: 1050px;
+    --popup-min-height: 1575px;  /* 1050 * 1.5 = 1575px */
     --popup-max-height: 95vh;
     --header-height: 56px;
     --footer-height: 40px;
@@ -105,6 +105,7 @@ body {
     max-height: var(--popup-max-height);
     height: var(--popup-max-height);
     overflow: hidden;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -116,6 +117,8 @@ body {
     height: var(--popup-max-height);
     max-height: var(--popup-max-height);
     background: var(--bg-primary);
+    position: relative;
+    padding-bottom: var(--footer-height); /* 푸터 공간 확보 */
 }
 
 /* Header Styles - macOS Style */
@@ -393,8 +396,10 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: var(--spacing-md);
+    padding-bottom: calc(var(--footer-height) + var(--spacing-md)); /* 푸터 공간 확보 */
     background: var(--bg-primary);
-    min-height: 0;
+    min-height: 800px;  /* 기본 400px의 2배 */
+    height: calc(100vh - var(--header-height) - var(--footer-height) - 60px); /* 동적 높이 */
 }
 
 /* Loading State */
@@ -686,7 +691,10 @@ body {
 
 /* Footer - macOS Style */
 .footer {
-    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -694,7 +702,9 @@ body {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border-light);
     min-height: var(--footer-height);
-    margin-top: auto;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-info {
@@ -830,7 +840,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeIn var(--transition-normal);
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .modal-backdrop {
@@ -848,12 +859,12 @@ body {
     background: var(--bg-secondary);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
-    max-width: 450px;
-    width: 95%;
-    max-height: 80vh;
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: calc(100vh - 40px);
     overflow: hidden;
-    animation: scaleIn var(--transition-normal);
-    margin: var(--spacing-md);
+    z-index: 2001;
 }
 
 @keyframes scaleIn {
@@ -962,8 +973,14 @@ body {
 @media (max-width: 500px) {
     :root {
         --popup-width: 400px;
-        --popup-min-height: 900px;
-        --popup-max-height: 90vh;
+        --popup-min-height: 1350px;  /* 900 * 1.5 = 1350px */
+        --popup-max-height: 95vh;
+    }
+    
+    .content {
+        min-height: 600px;  /* 모바일에서는 600px */
+        height: calc(100vh - var(--header-height) - var(--footer-height) - 60px);
+        padding-bottom: calc(var(--footer-height) + var(--spacing-md));
     }
     
     .pages-grid {
@@ -1811,4 +1828,38 @@ body.delete-mode .delete-shortcuts {
     .page-checkbox {
         transition: none;
     }
+}
+
+/* View Toggle */
+.view-toggle {
+    display: flex;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-left: var(--spacing-sm);
+}
+
+.view-btn {
+    background: none;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-secondary);
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.view-btn.active {
+    background: var(--primary-color);
+    color: white;
 }

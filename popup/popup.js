@@ -39,6 +39,9 @@ class PopupManager {
         // UI elements cache
         this.elements = {};
         
+        // Modal event cleanup array
+        this.modalEventCleanup = [];
+        
         this.init();
     }
 
@@ -235,6 +238,15 @@ class PopupManager {
             this.handleSortChange(e.target.value);
         });
         
+        // View toggle buttons
+        document.getElementById('grid-view-btn')?.addEventListener('click', () => {
+            this.handleViewChange('grid');
+        });
+        
+        document.getElementById('list-view-btn')?.addEventListener('click', () => {
+            this.handleViewChange('list');
+        });
+        
         // Load more button
         this.elements.loadMoreBtn?.addEventListener('click', () => {
             this.loadMorePages();
@@ -246,7 +258,10 @@ class PopupManager {
         });
         
         this.elements.deleteAllBtn?.addEventListener('click', () => {
-            this.showDeleteAllConfirmation();
+            // Simple confirmation for delete all
+            if (confirm(`Are you sure you want to delete all ${this.pages.length} saved pages? This action cannot be undone.`)) {
+                this.deleteAllPages();
+            }
         });
         
         // Context menu
@@ -869,24 +884,27 @@ class PopupManager {
             this.toggleFavorite(page.id);
         });
         
-        // Action buttons
-        const actionBtns = pageElement.querySelectorAll('.page-action-btn');
-        actionBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        // Action buttons with better event handling
+        const openBtn = pageElement.querySelector('[data-action="open"]');
+        const deleteBtn = pageElement.querySelector('[data-action="delete"]');
+        
+        if (openBtn) {
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopPropagation();
-                const action = btn.dataset.action;
-                const pageId = btn.dataset.pageId;
-                
-                switch (action) {
-                    case 'open':
-                        this.openPage(pageId);
-                        break;
-                    case 'delete':
-                        this.showDeleteConfirmation(pageId);
-                        break;
-                }
+                this.openPage(page.id);
             });
-        });
+        }
+        
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Delete directly without confirmation
+                this.deletePage(page.id);
+            });
+        }
         
         // Keyboard navigation
         pageElement.addEventListener('keydown', (e) => {
@@ -1048,11 +1066,9 @@ class PopupManager {
                 this.renderPages();
                 this.updateSelectionUI();
                 
-                // Show notification with undo option
-                if (!options.permanent && !options.silent) {
+                // Show notification
+                if (!options.silent) {
                     this.showDeleteNotification(page.title, pageId);
-                } else if (!options.silent) {
-                    this.showNotification('Page permanently deleted', 'success');
                 }
             } else {
                 throw new Error(response.error || 'Failed to delete page');
@@ -1986,7 +2002,7 @@ class PopupManager {
                 this.showNotification('URL copied to clipboard', 'success');
                 break;
             case 'delete':
-                this.showDeleteConfirmation(pageId);
+                this.deletePage(pageId);
                 break;
         }
     }
@@ -2095,16 +2111,212 @@ class PopupManager {
     }
 
     /**
+     * Show delete confirmation with safer approach
+     * 더 안전한 방법으로 삭제 확인 표시
+     */
+    showDeleteConfirmationSafe(pageId, pageTitle) {
+        console.log('Showing delete confirmation for:', pageId, pageTitle);
+        
+        const modal = this.elements.confirmationModal;
+        if (!modal) {
+            console.error('Modal element not found');
+            return;
+        }
+        
+        // Clear any existing event listeners
+        this.cleanModalEvents();
+        
+        // Set modal content
+        const titleEl = modal.querySelector('.modal-title');
+        const messageEl = modal.querySelector('.modal-message');
+        const confirmBtn = modal.querySelector('.modal-confirm');
+        const cancelBtn = modal.querySelector('.modal-cancel');
+        const closeBtn = modal.querySelector('.modal-close');
+        
+        if (titleEl) titleEl.textContent = 'Delete Page';
+        if (messageEl) messageEl.textContent = `Are you sure you want to delete "${pageTitle}"? This action cannot be undone.`;
+        if (confirmBtn) confirmBtn.textContent = 'Delete';
+        
+        // Set up event handlers
+        this.setupModalEventsSafe(pageId, modal);
+        
+        // Show modal
+        modal.classList.remove('hidden');
+        
+        console.log('Modal should now be visible');
+    }
+
+    /**
+     * Clean existing modal events
+     * 기존 모달 이벤트 정리
+     */
+    cleanModalEvents() {
+        if (this.modalEventCleanup) {
+            this.modalEventCleanup.forEach(cleanup => cleanup());
+            this.modalEventCleanup = [];
+        }
+    }
+
+    /**
+     * Setup modal events safely
+     * 모달 이벤트를 안전하게 설정
+     */
+    setupModalEventsSafe(pageId, modal) {
+        const confirmBtn = modal.querySelector('.modal-confirm');
+        const cancelBtn = modal.querySelector('.modal-cancel');
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        
+        // Store cleanup functions
+        this.modalEventCleanup = this.modalEventCleanup || [];
+        
+        // Confirm handler
+        const confirmHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Confirm delete clicked for:', pageId);
+            modal.classList.add('hidden');
+            this.deletePage(pageId);
+        };
+        
+        // Cancel handlers
+        const cancelHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Cancel delete clicked');
+            modal.classList.add('hidden');
+        };
+        
+        // Add event listeners
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', confirmHandler);
+            this.modalEventCleanup.push(() => confirmBtn.removeEventListener('click', confirmHandler));
+        }
+        
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => cancelBtn.removeEventListener('click', cancelHandler));
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => closeBtn.removeEventListener('click', cancelHandler));
+        }
+        
+        if (backdrop) {
+            backdrop.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => backdrop.removeEventListener('click', cancelHandler));
+        }
+        
+        // ESC key handler
+        const escHandler = (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                e.preventDefault();
+                e.stopPropagation();
+                modal.classList.add('hidden');
+            }
+        };
+        
+        document.addEventListener('keydown', escHandler);
+        this.modalEventCleanup.push(() => document.removeEventListener('keydown', escHandler));
+    }
+
+    /**
      * Show delete all confirmation
      * 모두 삭제 확인 표시
      */
     showDeleteAllConfirmation() {
-        this.showModal(
-            'Delete All Pages',
-            `Are you sure you want to delete all ${this.pages.length} saved pages? This action cannot be undone.`,
-            'Delete All',
-            () => this.deleteAllPages()
-        );
+        console.log('Showing delete all confirmation');
+        
+        const modal = this.elements.confirmationModal;
+        if (!modal) {
+            console.error('Modal element not found');
+            return;
+        }
+        
+        // Clear any existing event listeners
+        this.cleanModalEvents();
+        
+        // Set modal content
+        const titleEl = modal.querySelector('.modal-title');
+        const messageEl = modal.querySelector('.modal-message');
+        const confirmBtn = modal.querySelector('.modal-confirm');
+        
+        if (titleEl) titleEl.textContent = 'Delete All Pages';
+        if (messageEl) messageEl.textContent = `Are you sure you want to delete all ${this.pages.length} saved pages? This action cannot be undone.`;
+        if (confirmBtn) confirmBtn.textContent = 'Delete All';
+        
+        // Set up event handlers for delete all
+        this.setupModalEventsForDeleteAll(modal);
+        
+        // Show modal
+        modal.classList.remove('hidden');
+        
+        console.log('Delete all modal should now be visible');
+    }
+
+    /**
+     * Setup modal events for delete all
+     * 모두 삭제를 위한 모달 이벤트 설정
+     */
+    setupModalEventsForDeleteAll(modal) {
+        const confirmBtn = modal.querySelector('.modal-confirm');
+        const cancelBtn = modal.querySelector('.modal-cancel');
+        const closeBtn = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+        
+        // Store cleanup functions
+        this.modalEventCleanup = this.modalEventCleanup || [];
+        
+        // Confirm handler
+        const confirmHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Confirm delete all clicked');
+            modal.classList.add('hidden');
+            this.deleteAllPages();
+        };
+        
+        // Cancel handlers
+        const cancelHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Cancel delete all clicked');
+            modal.classList.add('hidden');
+        };
+        
+        // Add event listeners
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', confirmHandler);
+            this.modalEventCleanup.push(() => confirmBtn.removeEventListener('click', confirmHandler));
+        }
+        
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => cancelBtn.removeEventListener('click', cancelHandler));
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => closeBtn.removeEventListener('click', cancelHandler));
+        }
+        
+        if (backdrop) {
+            backdrop.addEventListener('click', cancelHandler);
+            this.modalEventCleanup.push(() => backdrop.removeEventListener('click', cancelHandler));
+        }
+        
+        // ESC key handler
+        const escHandler = (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                e.preventDefault();
+                e.stopPropagation();
+                modal.classList.add('hidden');
+            }
+        };
+        
+        document.addEventListener('keydown', escHandler);
+        this.modalEventCleanup.push(() => document.removeEventListener('keydown', escHandler));
     }
 
     /**
@@ -2209,10 +2421,14 @@ class PopupManager {
      * 실행 취소 옵션이 있는 삭제 알림 표시
      */
     showDeleteNotification(pageTitle, pageId) {
-        const message = `"${pageTitle}" deleted`;
+        // Truncate title if too long
+        const displayTitle = pageTitle.length > 50 ? 
+            pageTitle.substring(0, 50) + '...' : 
+            pageTitle;
+            
+        const message = `"${displayTitle}" deleted`;
         this.showNotification(message, 'success');
         
-        // Could add undo functionality here in the future
         console.log(`Page "${pageTitle}" (${pageId}) deleted`);
     }
 
@@ -2268,6 +2484,42 @@ class PopupManager {
         } else if (e.key === 'Escape') {
             this.hideSuggestions();
             this.elements.searchInput.blur();
+        }
+    }
+    
+    /**
+     * Handle view mode change
+     * 뷰 모드 변경 처리
+     */
+    handleViewChange(viewMode) {
+        this.currentView = viewMode;
+        this.applyViewMode(viewMode);
+        
+        // Update button states
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(`${viewMode}-view-btn`)?.classList.add('active');
+        
+        // Save view preference to settings
+        if (this.settings) {
+            this.settings.defaultView = viewMode;
+            this.saveSettings();
+        }
+        
+        console.log('View changed to:', viewMode);
+    }
+
+    /**
+     * Save settings to storage
+     * 스토리지에 설정 저장
+     */
+    async saveSettings() {
+        try {
+            await chrome.storage.local.set({ settings: this.settings });
+            console.log('Settings saved:', this.settings);
+        } catch (error) {
+            console.error('Error saving settings:', error);
         }
     }
 }
